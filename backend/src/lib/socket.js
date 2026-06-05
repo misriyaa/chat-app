@@ -17,11 +17,12 @@ const io = new Server(server, {
           : [])
       ];
       const isLocalhost = /^http:\/\/localhost(:\d+)?$/.test(origin);
+      const isVercel = /\.vercel\.app$/.test(origin);
       
       console.log("Socket CORS Request Origin:", origin);
       console.log("Socket Allowed Origins List:", allowedOrigins);
 
-      if (isLocalhost || allowedOrigins.includes(origin.replace(/\/$/, ""))) {
+      if (isLocalhost || isVercel || allowedOrigins.includes(origin.replace(/\/$/, ""))) {
         callback(null, true);
       } else {
         console.error(`Socket Origin ${origin} not found in allowed list`);

@@ -29,11 +29,12 @@ app.use(
           : [])
       ];
       const isLocalhost = /^http:\/\/localhost(:\d+)?$/.test(origin);
+      const isVercel = /\.vercel\.app$/.test(origin);
       
       console.log("CORS Request Origin:", origin);
       console.log("Allowed Origins List:", allowedOrigins);
 
-      if (isLocalhost || allowedOrigins.includes(origin.replace(/\/$/, ""))) {
+      if (isLocalhost || isVercel || allowedOrigins.includes(origin.replace(/\/$/, ""))) {
         callback(null, true);
       } else {
         console.error(`Origin ${origin} not found in allowed list`);
