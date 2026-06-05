@@ -97,7 +97,7 @@ const MessageInput = () => {
 
           <button
             type="button"
-            className={`hidden sm:flex btn btn-circle ${
+            className={`flex btn btn-sm sm:btn-md btn-circle ${
               imagePreview ? "text-emerald-500" : "text-zinc-400"
             }`}
             onClick={() => fileInputRef.current?.click()}
@@ -109,10 +109,10 @@ const MessageInput = () => {
         {/* Submit Button - Reference: Screenshot 2026-06-04 223553.jpg */}
         <button
           type="submit"
-          className="btn btn-sm btn-circle"
+          className="btn btn-sm sm:btn-md btn-circle flex items-center justify-center"
           disabled={!text.trim() && !imagePreview}
         >
-          <Send size={22} />
+          <Send size={20} />
         </button>
       </form>
     </div>
