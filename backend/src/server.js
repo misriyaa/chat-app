@@ -24,12 +24,19 @@ app.use(
       const allowedOrigins = [
         "http://localhost:5173",
         "http://localhost:3000",
-        ...(process.env.FRONTEND_URL ? process.env.FRONTEND_URL.split(",").map(url => url.trim()) : [])
+        ...(process.env.FRONTEND_URL 
+          ? process.env.FRONTEND_URL.split(",").map(url => url.trim().replace(/\/$/, "")) 
+          : [])
       ];
       const isLocalhost = /^http:\/\/localhost(:\d+)?$/.test(origin);
-      if (isLocalhost || allowedOrigins.includes(origin)) {
+      
+      console.log("CORS Request Origin:", origin);
+      console.log("Allowed Origins List:", allowedOrigins);
+
+      if (isLocalhost || allowedOrigins.includes(origin.replace(/\/$/, ""))) {
         callback(null, true);
       } else {
+        console.error(`Origin ${origin} not found in allowed list`);
         callback(new Error("Not allowed by CORS"));
       }
     },
