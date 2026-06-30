@@ -45,7 +45,7 @@ function LoginPage() {
   };
 
   return (
-    <div className="h-screen bg-[#0f172a] flex flex-col lg:flex-row overflow-hidden">
+    <div className="h-screen flex flex-col lg:flex-row overflow-hidden">
       {/* Left Side */}
       <div className="flex-1 flex items-center justify-center px-6 py-10">
         <div className="w-full max-w-md">
