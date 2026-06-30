@@ -4,18 +4,18 @@ function AuthImagePattern({ title, subtitle }) {
 
       {/* Glowing dot */}
       <div className="relative flex items-center justify-center mb-10">
-        <div className="w-3 h-3 rounded-full bg-violet-500" />
+        <div className="w-3 h-3 rounded-full "/>
         <div className="absolute w-8 h-8 rounded-full bg-violet-500/20" />
         <div className="absolute w-14 h-14 rounded-full bg-violet-500/10" />
       </div>
 
       {/* Title */}
-      <h2 className="text-3xl font-bold text-white text-center mb-4">
+      <h2 className="text-3xl font-bold text-center mb-4">
         {title}
       </h2>
 
       {/* Subtitle */}
-      <p className="text-gray-500 text-center text-sm leading-relaxed max-w-xs mb-12">
+      <p className=" text-center text-sm leading-relaxed max-w-xs mb-12">
         {subtitle}
       </p>
 
