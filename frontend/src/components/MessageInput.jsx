@@ -48,7 +48,7 @@ const MessageInput = () => {
   };
 
   return (
-    <div className="p-3 sm:p-4 w-full border-t border-slate-200 bg-white">
+    <div className="p-3 sm:p-4 w-full border-t border-base-300 bg-base-100">
       {/* Image Preview Block */}
       {imagePreview && (
         <div className="mb-3 flex items-center gap-2">
@@ -56,11 +56,11 @@ const MessageInput = () => {
             <img
               src={imagePreview}
               alt="Preview"
-              className="w-20 h-20 object-cover rounded-xl border border-slate-200 shadow-xs"
+              className="w-20 h-20 object-cover rounded-xl border border-base-300 shadow-xs"
             />
             <button
               onClick={removeImage}
-              className="absolute -top-1.5 -right-1.5 w-6 h-6 rounded-full bg-slate-800 hover:bg-slate-900 text-white flex items-center justify-center shadow-xs cursor-pointer transition-colors"
+              className="absolute -top-1.5 -right-1.5 w-6 h-6 rounded-full bg-base-300 text-base-content hover:bg-base-content hover:text-base-100 flex items-center justify-center shadow-xs cursor-pointer transition-colors"
               type="button"
               aria-label="Remove image"
             >
@@ -75,7 +75,7 @@ const MessageInput = () => {
         <div className="flex-1 flex items-center gap-2">
           <input
             type="text"
-            className="flex-1 bg-white border border-slate-300 rounded-xl px-4 py-2.5 text-sm text-[#111827] placeholder:text-slate-400 focus:outline-none focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/20 transition-all duration-200"
+            className="input input-bordered rounded-xl input-sm sm:input-md flex-1 bg-base-100 text-base-content placeholder:text-base-content/50"
             placeholder="Type a message..."
             value={text}
             onChange={(e) => setText(e.target.value)}
@@ -92,10 +92,10 @@ const MessageInput = () => {
 
           <button
             type="button"
-            className={`p-2.5 rounded-xl border transition-colors flex items-center justify-center cursor-pointer ${
+            className={`btn btn-circle btn-sm sm:btn-md btn-ghost ${
               imagePreview
-                ? "text-emerald-600 bg-emerald-50 border-emerald-300 hover:bg-emerald-100"
-                : "text-slate-500 bg-white border-slate-200 hover:text-[#7C3AED] hover:bg-slate-50"
+                ? "text-success"
+                : "text-base-content/60 hover:text-primary"
             }`}
             onClick={() => fileInputRef.current?.click()}
             aria-label="Attach an image"
@@ -107,7 +107,7 @@ const MessageInput = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="p-2.5 rounded-xl bg-[#7C3AED] hover:bg-[#6D28D9] text-white flex items-center justify-center transition-colors cursor-pointer shadow-xs disabled:opacity-40 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400"
+          className="btn btn-primary btn-circle btn-sm sm:btn-md"
           disabled={!text.trim() && !imagePreview}
           aria-label="Send message"
         >

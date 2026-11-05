@@ -37,7 +37,7 @@ const ChatContainer = () => {
 
   if (isMessagesLoading) {
     return (
-      <div className="flex-1 flex flex-col overflow-auto bg-white">
+      <div className="flex-1 flex flex-col overflow-auto bg-base-100">
         <ChatHeader />
         <MessageSkeleton />
         <MessageInput />
@@ -46,18 +46,18 @@ const ChatContainer = () => {
   }
 
   return (
-    <div className="flex-1 flex flex-col overflow-auto bg-white">
+    <div className="flex-1 flex flex-col overflow-auto bg-base-100">
       <ChatHeader />
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-[#F8FAFC]/50">
+      <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {messages.length === 0 ? (
-          <div className="flex flex-col items-center justify-center h-full text-slate-500 gap-2">
-            <div className="w-12 h-12 rounded-full bg-[#7C3AED]/10 flex items-center justify-center text-[#7C3AED]">
+          <div className="flex flex-col items-center justify-center h-full text-base-content/60 gap-2">
+            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
               <MessageSquare className="w-6 h-6" />
             </div>
-            <p className="font-semibold text-[#111827]">No messages yet</p>
-            <p className="text-xs text-slate-500">Send a message to start the conversation!</p>
+            <p className="font-semibold text-base-content">No messages yet</p>
+            <p className="text-xs text-base-content/60">Send a message to start the conversation!</p>
           </div>
         ) : (
           messages.map((message) => {
@@ -70,7 +70,7 @@ const ChatContainer = () => {
               >
                 {/* Avatar */}
                 <div className="chat-image avatar">
-                  <div className="size-10 rounded-full border border-slate-200 overflow-hidden shadow-xs">
+                  <div className="size-10 rounded-full border border-base-300 overflow-hidden shadow-xs">
                     <img
                       src={
                         isSentByMe
@@ -84,7 +84,7 @@ const ChatContainer = () => {
 
                 {/* Time */}
                 <div className="chat-header mb-1">
-                  <time className="text-xs text-slate-500 font-medium ml-1">
+                  <time className="text-xs text-base-content/60 font-medium ml-1">
                     {new Date(message.createdAt).toLocaleTimeString([], {
                       hour: "2-digit",
                       minute: "2-digit",
@@ -94,17 +94,17 @@ const ChatContainer = () => {
 
                 {/* Message Bubble */}
                 <div
-                  className={`chat-bubble p-3 rounded-2xl shadow-xs break-words ${
+                  className={`chat-bubble break-words ${
                     isSentByMe
-                      ? "bg-[#7C3AED] text-white"
-                      : "bg-white text-[#111827] border border-slate-200 shadow-xs"
+                      ? "chat-bubble-primary"
+                      : "bg-base-200 text-base-content"
                   }`}
                 >
                   {message.image && (
                     <img
                       src={message.image}
                       alt="attachment"
-                      className="max-w-[250px] rounded-xl mb-2 object-cover border border-black/10"
+                      className="max-w-[250px] rounded-xl mb-2 object-cover border border-base-300"
                     />
                   )}
 

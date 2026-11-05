@@ -5,7 +5,6 @@ export const useThemeStore = create((set) => ({
 
   setTheme: (theme) => {
     localStorage.setItem("chat-theme", theme);
-    document.documentElement.setAttribute("data-theme", theme);
     set({ theme });
   },
 }));

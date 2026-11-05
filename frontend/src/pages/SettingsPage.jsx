@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import { THEMES } from "../constants";
 import { useThemeStore } from "../store/useThemeStore";
 
@@ -17,10 +16,6 @@ const PREVIEW_MESSAGES = [
 
 function SettingsPage() {
   const { theme, setTheme } = useThemeStore();
-
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-  }, [theme]);
 
   return (
     <div className="h-screen container mx-auto px-4 pt-20 max-w-5xl">
@@ -79,10 +74,12 @@ function SettingsPage() {
             {/* Chat Header */}
             <div className="px-4 py-3 border-b border-base-300 bg-base-200">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-primary"></div>
+                <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-primary-content font-bold">
+                  J
+                </div>
 
                 <div>
-                  <h4 className="font-medium">John Doe</h4>
+                  <h4 className="font-medium text-base-content">John Doe</h4>
                   <p className="text-xs text-base-content/60">
                     Online
                   </p>
@@ -105,7 +102,7 @@ function SettingsPage() {
                     className={`chat-bubble ${
                       message.isSent
                         ? "chat-bubble-primary"
-                        : ""
+                        : "bg-base-200 text-base-content"
                     }`}
                   >
                     {message.content}
@@ -120,7 +117,7 @@ function SettingsPage() {
                 <input
                   type="text"
                   placeholder="Type a message..."
-                  className="input input-bordered flex-1"
+                  className="input input-bordered flex-1 bg-base-100 text-base-content"
                   disabled
                 />
 

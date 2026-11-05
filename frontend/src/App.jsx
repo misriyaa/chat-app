@@ -9,20 +9,14 @@ import ProfilePage from "./pages/ProfilePage";
 import { useAuthStore } from "./store/useAuthStore";
 import { Loader } from "lucide-react";
 import { Toaster } from "react-hot-toast";
-import { useThemeStore } from "./store/useThemeStore";
 
 function App() {
   const { authUser, isCheckingAuth, checkAuth } = useAuthStore();
-  const { theme } = useThemeStore();
 
   useEffect(() => {
     // Check if the user is authenticated on app load
     checkAuth();
   }, [checkAuth]);
-
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-  }, [theme]);
 
   if (isCheckingAuth && !authUser) {
     return (
@@ -33,7 +27,7 @@ function App() {
   }
 
   return (
-    <div data-theme={theme} className="min-h-screen bg-base-100 text-base-content antialiased">
+    <div className="min-h-screen bg-base-100 text-base-content antialiased">
       <Navbar />
       <Routes>
         <Route path="/" element={authUser ? <HomePage /> : <Navigate to="/login" />} />
