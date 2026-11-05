@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import Navbar from "./components/Navbar";
 import { Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "./pages/HomePage";
@@ -12,23 +12,28 @@ import { Toaster } from "react-hot-toast";
 import { useThemeStore } from "./store/useThemeStore";
 
 function App() {
-  const { authUser, isCheckingAuth, checkAuth,onlineUsers } = useAuthStore();
+  const { authUser, isCheckingAuth, checkAuth } = useAuthStore();
   const { theme } = useThemeStore();
+
   useEffect(() => {
     // Check if the user is authenticated on app load
     checkAuth();
   }, [checkAuth]);
 
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
+
   if (isCheckingAuth && !authUser) {
     return (
-      <div className="flex items-center justify-center h-screen">
-        <Loader className="animate-spin" size={48} />
+      <div className="flex items-center justify-center h-screen bg-[#F8FAFC]">
+        <Loader className="animate-spin text-[#7C3AED]" size={48} />
       </div>
     );
   }
 
   return (
-    <div data-theme={theme}>
+    <div data-theme={theme} className="min-h-screen bg-base-100 text-base-content antialiased">
       <Navbar />
       <Routes>
         <Route path="/" element={authUser ? <HomePage /> : <Navigate to="/login" />} />
@@ -37,7 +42,7 @@ function App() {
         <Route path="/settings" element={<SettingsPage />} />
         <Route path="/profile" element={authUser ? <ProfilePage /> : <Navigate to="/login" />} />
       </Routes>
-      <Toaster/>
+      <Toaster />
     </div>
   );
 }
