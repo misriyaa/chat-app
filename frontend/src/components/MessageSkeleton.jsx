@@ -1,11 +1,8 @@
-import React from 'react';
-
 const MessageSkeleton = () => {
-  // Create an array of 6 items for skeleton messages
   const skeletonMessages = Array(6).fill(null);
 
   return (
-    <div className="flex-1 overflow-y-auto p-4 space-y-4">
+    <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-white">
       {skeletonMessages.map((_, idx) => (
         <div 
           key={idx} 
@@ -13,19 +10,19 @@ const MessageSkeleton = () => {
         >
           {/* Avatar Skeleton */}
           <div className="chat-image avatar">
-            <div className="size-10 rounded-full">
-              <div className="skeleton w-full h-full rounded-full" />
+            <div className="size-10 rounded-full border border-slate-200 overflow-hidden">
+              <div className="skeleton w-full h-full rounded-full bg-slate-200" />
             </div>
           </div>
 
           {/* Header/Name Skeleton */}
           <div className="chat-header mb-1">
-            <div className="skeleton h-4 w-16" />
+            <div className="skeleton h-3 w-14 bg-slate-200" />
           </div>
 
           {/* Message Bubble Skeleton */}
           <div className="chat-bubble bg-transparent p-0">
-            <div className="skeleton h-16 w-[200px]" />
+            <div className="skeleton h-14 w-[200px] rounded-2xl bg-slate-200" />
           </div>
         </div>
       ))}

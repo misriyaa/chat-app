@@ -1,19 +1,13 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { X, Image, Send } from 'lucide-react';
 import { useChatStore } from '../store/useChatStore';
-
-// Assuming useChatStore hook is imported from your state management file
-// import { useChatStore } from '../../store/useChatStore';
 
 const MessageInput = () => {
   const [text, setText] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
   const fileInputRef = useRef(null);
-  
-  // Destructuring sendMessage from your chat store as seen in Screenshot 2026-06-04 223538.jpg
-  // const { sendMessage } = useChatStore();
- const { sendMessage } = useChatStore();
- 
+  const { sendMessage } = useChatStore();
+
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -54,22 +48,23 @@ const MessageInput = () => {
   };
 
   return (
-    <div className="p-4 w-full">
-      {/* Image Preview Block - Reference: Screenshot 2026-06-04 223104.jpg & Screenshot 2026-06-04 223609.jpg */}
+    <div className="p-3 sm:p-4 w-full border-t border-slate-200 bg-white">
+      {/* Image Preview Block */}
       {imagePreview && (
         <div className="mb-3 flex items-center gap-2">
           <div className="relative">
             <img
               src={imagePreview}
               alt="Preview"
-              className="w-20 h-20 object-cover rounded-lg border border-zinc-700"
+              className="w-20 h-20 object-cover rounded-xl border border-slate-200 shadow-xs"
             />
             <button
               onClick={removeImage}
-              className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-base-300 flex items-center justify-center"
+              className="absolute -top-1.5 -right-1.5 w-6 h-6 rounded-full bg-slate-800 hover:bg-slate-900 text-white flex items-center justify-center shadow-xs cursor-pointer transition-colors"
               type="button"
+              aria-label="Remove image"
             >
-              <X className="size-3" />
+              <X className="size-3.5" />
             </button>
           </div>
         </div>
@@ -77,16 +72,16 @@ const MessageInput = () => {
 
       {/* Main Input Form Controls */}
       <form onSubmit={handleSendMessage} className="flex items-center gap-2">
-        <div className="flex-1 flex gap-2">
+        <div className="flex-1 flex items-center gap-2">
           <input
             type="text"
-            className="input input-bordered rounded-lg input-sm sm:input-md flex-1"
+            className="flex-1 bg-white border border-slate-300 rounded-xl px-4 py-2.5 text-sm text-[#111827] placeholder:text-slate-400 focus:outline-none focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/20 transition-all duration-200"
             placeholder="Type a message..."
             value={text}
             onChange={(e) => setText(e.target.value)}
           />
 
-          {/* Hidden File Input & Image Button - Reference: Screenshot 2026-06-04 223553.jpg */}
+          {/* Hidden File Input & Image Button */}
           <input
             type="file"
             accept="image/*"
@@ -97,20 +92,24 @@ const MessageInput = () => {
 
           <button
             type="button"
-            className={`flex btn btn-sm sm:btn-md btn-circle ${
-              imagePreview ? "text-emerald-500" : "text-zinc-400"
+            className={`p-2.5 rounded-xl border transition-colors flex items-center justify-center cursor-pointer ${
+              imagePreview
+                ? "text-emerald-600 bg-emerald-50 border-emerald-300 hover:bg-emerald-100"
+                : "text-slate-500 bg-white border-slate-200 hover:text-[#7C3AED] hover:bg-slate-50"
             }`}
             onClick={() => fileInputRef.current?.click()}
+            aria-label="Attach an image"
           >
             <Image size={20} />
           </button>
         </div>
 
-        {/* Submit Button - Reference: Screenshot 2026-06-04 223553.jpg */}
+        {/* Submit Button */}
         <button
           type="submit"
-          className="btn btn-sm sm:btn-md btn-circle flex items-center justify-center"
+          className="p-2.5 rounded-xl bg-[#7C3AED] hover:bg-[#6D28D9] text-white flex items-center justify-center transition-colors cursor-pointer shadow-xs disabled:opacity-40 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-400"
           disabled={!text.trim() && !imagePreview}
+          aria-label="Send message"
         >
           <Send size={20} />
         </button>
